@@ -1,0 +1,54 @@
+<div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+            <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b 
+                dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Name</th>
+                    <th class="px-4 py-3">Status</th>
+                    <th class="px-4 py-3">Last Update</th>
+                    <th class="px-4 py-3">Sync Github</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr class="text-gray-700 dark:text-gray-400" *ngFor="let repo of repos">
+                    <td class="px-4 py-3 text-sm">
+                        {{repo.id}}
+                    </td>
+                    <td class="px-4 py-3 font-semibold">
+                        {{repo.name}}
+                    </td>
+                    <td class="px-4 py-3">
+                        <button class="inline-flex items-center justify-between">
+                            <span *ngIf="repo.webhook; else elseBlock"
+                                class="inline-flex px-2 py-1 font-medium text-sm leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                Listening
+                                <img src="assets/icons/sync.svg" alt="">
+                            </span>
+                            <ng-template #elseBlock>
+                                <span class="inline-flex px-2 py-1 font-medium text-sm leading-tight text-black bg-gray-200 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    Pending
+                                    <img src="assets/icons/async.svg" alt="">
+                                </span>
+                            </ng-template>
+                        </button>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{repo.updated_at | date: 'medium'}}
+                    </td>
+                    <td class="px-4 py-3">
+                        <button (click)="addToSelectedList(repo)" class="hover:border-green-700">
+                            <ng-container *ngIf="repo.webhook; else elseBlock2">
+                                <img src="assets/icons/add_box.svg">
+                            </ng-container>
+                            <ng-template #elseBlock2>
+                                <img src="assets/icons/add_box.svg">
+                            </ng-template>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
