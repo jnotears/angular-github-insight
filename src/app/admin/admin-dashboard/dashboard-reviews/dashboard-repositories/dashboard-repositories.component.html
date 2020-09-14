@@ -1,0 +1,27 @@
+<div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+            <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b 
+                dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                <th class="px-4 py-3">ID</th>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Update</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr *ngFor="let repo of repos" class="text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3 text-sm">
+                        {{repo.id}}
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{repo.name}}
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{repo.updated_at}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

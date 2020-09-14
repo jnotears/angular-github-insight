@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RepositoryEntity } from '../models';
+import { RepositoryEntity } from '../../models';
 import { AdminService } from '../../admin.service';
 
 

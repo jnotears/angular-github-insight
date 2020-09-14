@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryEntity } from './models';
+import { RepositoryEntity } from '../models';
 import { AdminService } from '../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 

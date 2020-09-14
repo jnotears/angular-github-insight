@@ -27,16 +27,14 @@
                             </td>
                             <td class="px-4 py-3">
                                 <button class="inline-flex items-center justify-between">
-                                    <span *ngIf="repo.webhook; else elseBlock"
+                                    <span *ngIf="repo.sync; else elseBlock"
                                         class="inline-flex px-2 py-1 font-medium text-sm leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                        Listening
-                                        <img src="assets/icons/sync.svg" alt="">
+                                        Sync
                                     </span>
                                     <ng-template #elseBlock>
                                         <span
                                             class="inline-flex px-2 py-1 font-medium text-sm leading-tight text-black bg-gray-200 rounded-full dark:bg-green-700 dark:text-green-100">
                                             Pending
-                                            <img src="assets/icons/async.svg" alt="">
                                         </span>
                                     </ng-template>
                                 </button>
@@ -45,7 +43,7 @@
                                 {{repo.updated_at | date: 'medium'}}
                             </td>
                             <td class="px-4 py-3">
-                                <button (click)="registerHook(repo.name)" class="hover:border-green-700">
+                                <button (click)="registerHook(repo.name)" class="border rounded-lg px-8 py-2 hover:border-green-700">
                                     <img src="assets/icons/sync.svg">
                                 </button>
                             </td>

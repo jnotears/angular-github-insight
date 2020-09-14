@@ -1,32 +1,31 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { RepositoryEntity } from '../admin-repos/models';
+import { RepositoryEntity } from '../models';
 
 @Component({
     selector: 'app-admin-dashboard',
     templateUrl: 'admin-dashboard.component.html'
 })
-export class AdminDashboardComponent implements OnInit{
+export class AdminDashboardComponent implements OnInit {
     repos: RepositoryEntity[] = [];
 
     constructor(
         private readonly adminService: AdminService
-    ){}
+    ) { }
 
-    ngOnInit(){
+    ngOnInit() {
         const username: string = localStorage.getItem('current_user');
         this.getRepos(username);
     }
 
-    getRepos(username: string){
+    getRepos(username: string) {
         this.adminService.getRepos(username).subscribe(
             val => {
-                for(let repo of val){
-                    if(repo.webhook == true){
+                for (let repo of val) {
+                    if (repo.webhook == true) {
                         this.repos.push(repo);
                     }
                 }
-                console.log(this.repos);
             }
         );
     }

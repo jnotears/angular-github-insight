@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { User } from './user';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../models'
 
 @Component({
     selector: 'app-admin',
@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
     }
 
     getTheme() {
-        if(localStorage.getItem('dark')){
+        if (localStorage.getItem('dark')) {
             return JSON.parse(localStorage.getItem('dark'));
         }
         return !!matchMedia && matchMedia('(prefers-color-scheme: dark)').matches

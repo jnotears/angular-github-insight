@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AdminService } from '../../admin.service';
-import { RepositoryEntity, IssueEntity } from '../../admin-repos/models';
+import { RepositoryEntity, IssueEntity, ProjectEntity, Assignee } from '../../models';
 
 @Component({
     selector: 'dashboard-reviews',
@@ -13,6 +13,8 @@ export class DashboardReviewsComponent implements OnInit{
     totalSyncProject: number = 0;
     totalSyncAssignee: number = 0;
     issues: IssueEntity[] = [];
+    projs: ProjectEntity[] = [];
+    assignees: Assignee[] = []
     constructor(
         private readonly adminService: AdminService
     ){}
@@ -20,6 +22,9 @@ export class DashboardReviewsComponent implements OnInit{
     ngOnInit(){
         const username = localStorage.getItem('current_user');
         this.getSyncRepos(username);
+        this.getSyncIssues(username);
+        this.getSyncProjects(username);
+        this.getSyncAssignees(username);
     }
 
     getSyncRepos(username: string){
@@ -31,7 +36,30 @@ export class DashboardReviewsComponent implements OnInit{
         );
     }
 
-    getSyncIssues(repo: number[]){
+    getSyncIssues(username: string){
+        return this.adminService.getSyncIssues(username).subscribe(
+            issues => {
+                this.issues = issues;
+                this.totalSyncIssue = issues.length;
+            }
+        );
+    }
 
+    getSyncProjects(username: string){
+        return this.adminService.getSyncProjects(username).subscribe(
+            projs => {
+                this.projs = projs;
+                this.totalSyncProject = projs.length;
+            }
+        );
+    }
+
+    getSyncAssignees(username: string){
+        return this.adminService.getSyncAssignees(username).subscribe(
+            assigs => {
+                this.assignees = assigs;
+                this.totalSyncAssignee = assigs.length;
+            }
+        );
     }
 }
