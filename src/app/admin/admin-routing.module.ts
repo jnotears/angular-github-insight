@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminReposComponent } from './admin-repos/admin-repos.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 const heroesRoutes: Routes = [
     {
@@ -14,7 +15,8 @@ const heroesRoutes: Routes = [
                 children: [
                     { path: '', component: AdminDashboardComponent },
                     { path: 'dashboard', component: AdminDashboardComponent },
-                    { path: 'repos', component: AdminReposComponent }
+                    { path: 'repos', component: AdminReposComponent },
+                    { path: 'profile', component: AdminProfileComponent }
                 ]
             }
         ]

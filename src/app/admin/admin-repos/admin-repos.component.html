@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        <tr class="text-gray-700 dark:text-gray-400" *ngFor="let repo of repos">
+                        <tr class="text-gray-700 hover:bg-gray-100 dark:text-gray-400" *ngFor="let repo of repos">
                             <td class="px-4 py-3 text-sm">
                                 {{repo.id}}
                             </td>
@@ -43,7 +43,7 @@
                                 {{repo.updated_at | date: 'medium'}}
                             </td>
                             <td class="px-4 py-3">
-                                <button (click)="registerHook(repo.name)" class="border rounded-lg px-8 py-2 hover:border-green-700">
+                                <button (click)="registerHook(repo.id)" class="border rounded-lg px-8 py-2 hover:border-green-700">
                                     <img src="assets/icons/sync.svg">
                                 </button>
                             </td>

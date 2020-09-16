@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { AdminService } from '../../admin.service';
-import { RepositoryEntity, IssueEntity, ProjectEntity, Assignee } from '../../models';
+import { Repository, IssueEntity, ProjectEntity, Assignee } from '../../models';
 
 @Component({
     selector: 'dashboard-reviews',
     templateUrl: 'dashboard-reviews.component.html',
 })
 export class DashboardReviewsComponent implements OnInit{
-    repos: RepositoryEntity[] = [];
+    repos: Repository[] = [];
     totalSyncRepo: number = 0;
     totalSyncIssue: number = 0;
     totalSyncProject: number = 0;

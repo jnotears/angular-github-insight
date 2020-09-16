@@ -17,7 +17,11 @@ export class AdminComponent implements OnInit {
         private readonly adminService: AdminService,
         private readonly authService: AuthService,
         private readonly router: Router
-    ) { }
+    ) { 
+        if(!localStorage.getItem('current_user') || !localStorage.getItem('access_token')){
+            this.router.navigate(['login']);
+        }
+    }
 
     ngOnInit() {
         const username = localStorage.getItem('current_user');
@@ -29,7 +33,7 @@ export class AdminComponent implements OnInit {
     getUser(username: string) {
         this.adminService.getUser(username).subscribe(
             data => {
-                this.user = data
+                this.user = data;
             }
         );
     }
@@ -56,5 +60,4 @@ export class AdminComponent implements OnInit {
             this.router.navigate(['login']);
         }
     }
-
 }

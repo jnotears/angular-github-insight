@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryEntity } from '../models';
+import { Repository } from '../models';
 import { AdminService } from '../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -8,21 +8,22 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: 'admin-repos.component.html',
 })
 export class AdminReposComponent implements OnInit {
-  repos: RepositoryEntity[] = [];
-  selectedRepos: RepositoryEntity[] = []
+  repos: Repository[] = [];
 
   constructor(
     private readonly adminService: AdminService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
-  ) { 
-    if(!localStorage.getItem('current_user') || !localStorage.getItem('access_token')){
+  ) {
+    if (!localStorage.getItem('current_user') || !localStorage.getItem('access_token')) {
       this.router.navigate(['login']);
     }
   }
 
   ngOnInit(): void {
+    console.log('okkkkkkkkk')
     const username = localStorage.getItem('current_user');
+    console.log(username);
     this.getRepos(username);
   }
 
@@ -34,8 +35,7 @@ export class AdminReposComponent implements OnInit {
     );
   }
 
-  registerHook(repo_name: string){
-    console.log(repo_name);
-    return this.adminService.registerHook(repo_name).subscribe();
+  registerHook(repo_id: number) {
+    return this.adminService.registerHook(repo_id).subscribe();
   }
 }

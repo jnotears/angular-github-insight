@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import { RepositoryEntity, IssueEntity, ProjectEntity, Assignee, User } from './models';
+import { Repository, IssueEntity, ProjectEntity, Assignee, User } from './models';
 
 @Injectable({
     providedIn: 'root'
@@ -17,18 +17,19 @@ export class AdminService {
         return this.http.get<User>(this.auth.hostUrl + `/api.github/user?username=${username}`);
     }
 
-    getRepos(username: string): Observable<RepositoryEntity[]> {
-        return this.http.get<RepositoryEntity[]>(this.auth.hostUrl + `/api.github/repos?username=${username}`);
+    getRepos(username: string): Observable<Repository[]> {
+        return this.http.get<Repository[]>(this.auth.hostUrl + `/api.github/repos?username=${username}`);
     }
 
-    registerHook(repo_name: string): Observable<any> {
-        const username = localStorage.getItem('current_user');
-        const body: {} = { repo_name, username };
+    registerHook(repo_id: number): Observable<any> {
+        const body: {} = { 
+            repo_id
+        };
         return this.http.post<any>(this.auth.hostUrl + `/api.github/hooks`, body);
     }
 
-    getSyncRepos(username: string): Observable<RepositoryEntity[]> {
-        return this.http.get<RepositoryEntity[]>(this.auth.hostUrl + `/api.github/repos/sync?username=${username}`);
+    getSyncRepos(username: string): Observable<Repository[]> {
+        return this.http.get<Repository[]>(this.auth.hostUrl + `/api.github/repos/sync?username=${username}`);
     }
 
     getSyncIssues(username: string): Observable<IssueEntity[]> {

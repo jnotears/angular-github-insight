@@ -1,0 +1,19 @@
+<main class="bg-gray-100 h-full pb-16 overflow-y-auto">
+    <div class="grid grid-cols-6 gap-2">
+        <div class="col-span-2 px-6 py-6">
+            <ng-container *ngIf="user.avatar_url; else elseBlock">
+                <img class="object-cover w-full h-full" src="{{user.avatar_url}}" alt=""
+                    aria-hidden="true" />
+            </ng-container>
+            <ng-template #elseBlock>
+                <img class="object-cover w-full h-full" src="assets/images/profilenone.jpg"
+                    alt="" aria-hidden="true" />
+            </ng-template>
+        </div>
+        <div class="col-span-4 px-6 py-6">
+            <div>
+                {{user.name}}
+            </div>
+        </div>
+    </div>
+</main>  

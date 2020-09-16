@@ -1,9 +1,12 @@
-export interface RepositoryEntity{
+
+export interface Repository{
     id: number,
     name: string,
-    use_id: string,
+    user_id: string,
     external_id: string,
-    webhook: boolean,
+    sync: boolean,
+    owner: string,
+    created_at: Date,
     updated_at: Date
 }
 
@@ -39,7 +42,11 @@ export interface Assignee{
 }
 
 export interface User{
+    id: string;
+    username: string;
     name: string;
-    email: string;
+    email: string;  
     avatar_url: string;
+    created_at: Date;
+    updated_at: Date;
 }

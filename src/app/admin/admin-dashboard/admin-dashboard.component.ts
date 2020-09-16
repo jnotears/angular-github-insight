@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { RepositoryEntity } from '../models';
+import { Repository } from '../models';
 
 @Component({
     selector: 'app-admin-dashboard',
     templateUrl: 'admin-dashboard.component.html'
 })
 export class AdminDashboardComponent implements OnInit {
-    repos: RepositoryEntity[] = [];
+    repos: Repository[] = [];
 
     constructor(
         private readonly adminService: AdminService
@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
         this.adminService.getRepos(username).subscribe(
             val => {
                 for (let repo of val) {
-                    if (repo.webhook == true) {
+                    if (repo.sync == true) {
                         this.repos.push(repo);
                     }
                 }
